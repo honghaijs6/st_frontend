@@ -3,16 +3,67 @@ import doPrint from '../../../../../hook/ultil/doPrint';
 import React, { Component } from 'react';
 import ViewModal from '../../../../../components/ViewModal';
 
+import numeral from 'numeral' ;
+
 export default class FormPrint extends Component {
 
 
     _formatHtml(data){
 
+        const types = {
+          nguoilon:'Người lớn',
+          treem:'Trẻ em'
+        };
+
+        const prices = {
+          nguoilon:120000,
+          treem:60000
+        };
+
+        const TOTAL = data.number_offer * prices[data.type]  ;
+
         let HTML = ``;
         if(JSON.stringify(data) !=='{}'){
 
-            HTML = `<div >
-                        <img src="https://chart.apis.google.com/chart?cht=qr&chs=360x360&chl=${ data.code }&chld=H|0" />
+            HTML = `<div style="width:340px; margin:auto; font-size:12px; font-family:Tahoma !important">
+                        <h5 style="text-transform:uppercase; text-align:center; font-size:12px">Trung tâm quản lý và điều hành vé  <br> khu du lịch văn hoá SUỐI TIÊN  </h5>
+                        <h3 style="text-align:center"> VÉ THAM QUAN </h3>
+
+                        <div style="text-align:center">
+                            <img style="width:200px; height:200px;" src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${ data.code }&chld=H|0" />
+
+                            <p>
+                              ${data.code}
+                            </p>
+
+                        </div>
+
+                        <p>
+                          Nhân viên phụ trách : 001
+                        </p>
+
+
+                        <p> Loại vé : ${types[data.type]}  - ${ data.number_offer > 1 ? 'Vé đoàn' : 'Vé đơn' } </p>
+
+
+                        <p> Ngày IN : 16-12-2019 </p>
+
+                        <p>
+                          Quý khách vui lòng giữ vé QRCODE để scan vào cổng, lưu ý chỉ sử dụng được 1 lần duy nhất
+                        </p>
+                        <p>
+                          Mã QRCODE có giá trị cho ${data.number_offer} lượt truy cập
+                        </p>
+
+                        <p style="font-size:20px" >
+                            Giá trị :  ${ numeral(prices[data.type]).format('0,0') } x ${ data.number_offer } = ${ numeral(TOTAL).format('0,0') } đ
+                        </p>
+
+                        <br> <br>
+                        <i> Cám ơn quý khách đã sử dụng dịch vụ </i>
+                        <br>
+                        <p></p>
+
                     </div>
             `;
 
@@ -26,17 +77,9 @@ export default class FormPrint extends Component {
 
         return (
             <ViewModal {...this.props}>
-                <div className="view-modal-body">
-
-                    <div style={{marginBottom:20}}>
-                        <div className="btn-group">
-
-                            <a onClick={()=>{ doPrint(HTML) }} className="btn btn-normal btn-sm"> <i className="fa fa-print"></i></a>
+                <div className="view-modal-body" onClick={()=>{ doPrint(HTML) }}>
 
 
-                        </div>
-
-                    </div>
                     <div
                         ref={el => (this.componentRef = el)}
                         style={{

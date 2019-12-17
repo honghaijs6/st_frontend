@@ -44,7 +44,8 @@ function calculateDay(start,end){
 class Ticket extends React.Component {
 
 
-  _curInfo = {}
+  _curInfo = {} ;
+
 
   constructor(props){
         super(props);
@@ -69,6 +70,21 @@ class Ticket extends React.Component {
                     return `
                         <span class="badge bg-green font-12"> <i class="fa fa-tags"></i> ${params.value} <span>
                     `
+                }
+              },
+              {
+                headerName:"Loại", field:"type", width:180,
+                cellRenderer(params){
+
+                  const types = {
+                    nguoilon:'<span class="badge bg-blue"> Người lớn </span>',
+                    treem:'<span class="badge bg-red"> Trẻ em </span>'
+                  } ;
+                  return `
+                      ${types[params.value]}
+                  `
+
+
                 }
               },
               {headerName: "ST Xu",field: "value",width:140,

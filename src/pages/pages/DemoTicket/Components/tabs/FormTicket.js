@@ -20,6 +20,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 
+
 Date.prototype.addDays = function(days) {
     this.setDate(this.getDate() + parseInt(days));
     return this;
@@ -106,7 +107,7 @@ class MyForm extends React.Component {
                 <div className="view-modal-body">
                     <FormGroup row>
 
-                        <Col md={12}>
+                        <Col md={8}>
                             <label> Từ - Đến ngày : <span className="text-red"> { this._calculateDay() } days</span></label>
                             <div>
                                 <DatePicker
@@ -123,6 +124,14 @@ class MyForm extends React.Component {
                                 />
                             </div>
 
+                        </Col>
+                        <Col>
+                            <label> Loại </label>
+                            <SelectList defaultValue="nguoilon" onChange={(e)=>{ this._onChange('type',e.target.value) }} rows={[
+                              { code:'nguoilon', name:'Người lớn'},
+                              { code:'treem', name:'Trẻ em'},
+
+                            ]} />
                         </Col>
                     </FormGroup>
 

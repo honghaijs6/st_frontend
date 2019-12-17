@@ -58,7 +58,12 @@ class RealtimeBox extends Component{
 
           let logs = Object.assign([],this.state.logs) ;
           logs.push(data[0]) ;
-          this.setState({ logs });
+          this.setState({ logs },()=>{
+
+            const scrollBox = document.getElementById('scroll-box') ;
+            scrollBox.scrollTop = scrollBox.scrollHeight;
+
+          });
 
       }
 
@@ -81,8 +86,7 @@ class RealtimeBox extends Component{
 
             </ul>
 
-            <div className="slimScrollDiv">
-              <div style={{position: 'relative', overflow: 'hidden', width: 'auto', height: '80vh'}}>
+            <div id="scroll-box" className="slimScrollDiv" style={{position: 'relative', overflowY: 'auto', width: 'auto', height: '80vh',}}>
 
                   <div className={` tab-pane chat active `} id="chat-box" style={{ marginTop:14, marginLeft:7}}>
 
@@ -112,7 +116,7 @@ class RealtimeBox extends Component{
                       }
                   </div>
 
-              </div>
+
             </div>
 
 
