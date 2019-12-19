@@ -39,10 +39,11 @@ class MyForm extends React.Component {
 
         return {
             code:'',
-            value:50,
-            number_offer:5,
+            value:10,
+            number_offer:1,
             date_begin:new Date(myTime.curDateEn()),
-            date_finish:new Date(myTime.curDateEn()).addDays(30)
+            date_finish:new Date(myTime.curDateEn()).addDays(30),
+            card_type:1
         }
     }
 
@@ -92,6 +93,7 @@ class MyForm extends React.Component {
                 number_offer:data.number_offer,
                 date_begin: new Date( moment(data.date_begin).format('YYYY-MM-DD') ),
                 date_finish: new Date( moment(data.date_finish).format('YYYY-MM-DD') ),
+                card_type:data.card_type
 
             })
         }
@@ -107,7 +109,25 @@ class MyForm extends React.Component {
                 <div className="view-modal-body">
                     <FormGroup row>
 
-                        <Col md={8}>
+                        <Col md={4}>
+                            <label> Kiểu vé  </label>
+                            <SelectList defaultValue={1} onChange={(e)=>{ this._onChange('card_type',e.target.value) }} rows={[
+                              { code:0, name:'QRCode'},
+                              { code:1, name:'Mifare'},
+
+                            ]} />
+                        </Col>
+
+                        <Col md={4}>
+                            <label>Mã </label>
+                            <Input
+                              type="text"
+                              onChange={(e)=>{ this._onChange('code',e.target.value) }}
+                              defaultValue={ this.state.code }
+                            />
+                        </Col>
+
+                        {/*}<Col md={5}>
                             <label> Từ - Đến ngày : <span className="text-red"> { this._calculateDay() } days</span></label>
                             <div>
                                 <DatePicker
@@ -124,8 +144,8 @@ class MyForm extends React.Component {
                                 />
                             </div>
 
-                        </Col>
-                        <Col>
+                        </Col>*/}
+                        <Col md={3}>
                             <label> Loại </label>
                             <SelectList defaultValue="nguoilon" onChange={(e)=>{ this._onChange('type',e.target.value) }} rows={[
                               { code:'nguoilon', name:'Người lớn'},

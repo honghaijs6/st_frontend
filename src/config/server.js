@@ -1,8 +1,8 @@
 
 
 const server = {
-  host: "http://localhost",//"http://localhost",//"http://115.78.5.75",
-  port:3333,
+  host: "http://115.78.5.75",//"http://localhost",//"http://115.78.5.75",
+  port:4545,
 
   url:'',
   paginate:{

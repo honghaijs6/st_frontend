@@ -73,7 +73,7 @@ class Ticket extends React.Component {
                 }
               },
               {
-                headerName:"Loại", field:"type", width:180,
+                headerName:"Size", field:"type", width:180,
                 cellRenderer(params){
 
                   const types = {
@@ -82,6 +82,18 @@ class Ticket extends React.Component {
                   } ;
                   return `
                       ${types[params.value]}
+                  `
+
+
+                }
+              },
+              {
+                headerName:"Loại", field:"card_type", width:180,
+                cellRenderer(params){
+
+                  const cardTypes = ['QRCode','Mifare'];
+                  return `
+                      ${cardTypes[params.value]}
                   `
 
 
@@ -208,6 +220,7 @@ class Ticket extends React.Component {
         if(res.name==='success'){
 
 
+            
             this._addUserToDevice(res.data) ;
 
             this.setState({
@@ -321,7 +334,7 @@ class Ticket extends React.Component {
                   typeAction={ this.state.typeAction }
                   isOpen={this.state.isOpen}
                   onToggle={(isOpen)=>{ this.setState({isOpen:isOpen}) }}
-                  width="20%"
+                  width="40%"
                   data={this._curInfo}
                   onSubmit={(state)=>{ this._onSubmit(state)  }}
                   devices={ this.state.devices }

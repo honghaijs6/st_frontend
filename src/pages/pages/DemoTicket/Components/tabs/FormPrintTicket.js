@@ -30,7 +30,7 @@ export default class FormPrint extends Component {
                         <h3 style="text-align:center"> VÉ THAM QUAN </h3>
 
                         <div style="text-align:center">
-                            <img style="width:200px; height:200px;" src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${ data.code }&chld=H|0" />
+                            <img style="width:100px; height:100px;" src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${ data.code }&chld=H|0" />
 
                             <p>
                               ${data.code}

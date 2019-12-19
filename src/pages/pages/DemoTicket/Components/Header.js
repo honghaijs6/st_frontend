@@ -14,7 +14,7 @@ const Header = (props)=>{
       paddingLeft:20
     }}>
 
-        Demo TicketBox
+        SUỐI TIÊN TICKET BOX
 
     </div>
   )
