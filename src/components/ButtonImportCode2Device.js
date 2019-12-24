@@ -143,7 +143,8 @@ class ButtonImportCode2Device extends Component {
 
                 // PUSH TO DEVICE
                 const sn = data.device_serial ;
-                const cmd = "DATA UPDATE user cardno="+data.code+"	pin="+data.code+"	password=	starttime=0	endtime=0	name=ticket	superauthorize=1	disable=0"
+                const cmd = "DATA UPDATE user cardno="+data.code+"	pin="+data.code+"	password=	starttime=0	endtime=0	name=ticket	superauthorize=1	disable=0";
+
                 this.zkpush.createCmd(cmd,sn).then((resDev)=>{
 
                     // PUSH ACCESS LEVEL
@@ -154,9 +155,9 @@ class ButtonImportCode2Device extends Component {
                       this.state.percentage = (this._index * 100)/this.grid.rowData.length;
 
                       this.setState({
+                          status:res.name,
                           percentage:this.state.percentage
                       });
-
                       this._uploadNow();
 
 
