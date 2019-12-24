@@ -109,32 +109,11 @@ class Ticket extends React.Component {
                 }
               },
 
-              {headerName: "Từ ngày",field: "date_begin",width:140,
-                cellRenderer(params){
-                    return moment(params.value).format('YYYY-MM-DD');
-                }
-              },
-              {headerName: "Đến ngày",field: "date_finish", width:140,
-                cellRenderer(params){
-                    return moment(params.value).format('YYYY-MM-DD');
-                }
-              },
-              {headerName: "Remain",field: "remain", width:140,
-                cellRenderer(params){
 
-                    return  calculateDay(moment(),params.data['date_finish'])+' days';
-                }
-              },
-              {headerName: "Trạng thái",field: "status", width:140,
-                cellRenderer(params){
 
-                    const num = calculateDay(moment(),params.data['date_finish']);
-                    return  num >= 0 ? '<span class="badge bg-green">Available</span>' : '<span class="badge bg-black">Expired</span>'
-                }
-              },
 
-              {headerName: "Giới hạn quét",field: "number_offer",width:140},
-              {headerName: "Đã quét",field: "used_count",width:140},
+              {headerName: "Số lần cho phép",field: "number_offer",width:180},
+              {headerName: "Đã sử dụng",field: "used_count",width:180},
 
               {headerName: "Ngày tạo ", field: "date_created", width:180,
                 cellRenderer(params){
@@ -374,6 +353,11 @@ class Ticket extends React.Component {
 
                 customButton={
                     <ButtonGroup style={{marginRight:10}}>
+
+
+                        <Button className="btn-normal">
+                           Reset Thẻ
+                        </Button>
 
                         <ButtonImportCode2Device
                             title="Import File Excel "

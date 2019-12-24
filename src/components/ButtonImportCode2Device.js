@@ -154,9 +154,9 @@ class ButtonImportCode2Device extends Component {
                       this.state.percentage = (this._index * 100)/this.grid.rowData.length;
 
                       this.setState({
-                          status:res.name,
                           percentage:this.state.percentage
                       });
+
                       this._uploadNow();
 
 

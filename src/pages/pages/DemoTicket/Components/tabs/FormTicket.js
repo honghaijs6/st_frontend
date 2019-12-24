@@ -109,14 +109,6 @@ class MyForm extends React.Component {
                 <div className="view-modal-body">
                     <FormGroup row>
 
-                        <Col md={4}>
-                            <label> Kiểu vé  </label>
-                            <SelectList defaultValue={1} onChange={(e)=>{ this._onChange('card_type',e.target.value) }} rows={[
-                              { code:0, name:'QRCode'},
-                              { code:1, name:'Mifare'},
-
-                            ]} />
-                        </Col>
 
                         <Col md={4}>
                             <label>Mã </label>
@@ -126,6 +118,17 @@ class MyForm extends React.Component {
                               defaultValue={ this.state.code }
                             />
                         </Col>
+
+                        <Col md={4}>
+                            <label> Kiểu vé  </label>
+                            <SelectList defaultValue={1} onChange={(e)=>{ this._onChange('card_type',e.target.value) }} rows={[
+                              { code:0, name:'QRCode'},
+                              { code:1, name:'Mifare'},
+
+                            ]} />
+                        </Col>
+
+
 
                         {/*}<Col md={5}>
                             <label> Từ - Đến ngày : <span className="text-red"> { this._calculateDay() } days</span></label>
@@ -156,14 +159,14 @@ class MyForm extends React.Component {
                     </FormGroup>
 
                     <FormGroup row>
-                        <Col md={6}>
+                        <Col md={4}>
                             <label> Số lần cho phép </label>
                             <Input
                                 id="number_offer"
                                 onChange={(e)=>{ this._onChange('number_offer',e.target.value) }}
                                 defaultValue={this.state.number_offer} min={1} max={1000000} type="number" />
                         </Col>
-                        <Col md={6}>
+                        <Col md={4}>
                             <label> Giá trị </label>
                             <InputGroup>
                                 <Input

@@ -4,8 +4,23 @@ import React, { Component } from 'react';
 import ViewModal from '../../../../../components/ViewModal';
 
 import numeral from 'numeral' ;
+import moment from 'moment' ;
+
+
 
 export default class FormPrint extends Component {
+
+
+
+    constructor(props){
+      super(props) ;
+
+      this.state = {
+        isReady:false
+      }
+
+    }
+
 
 
     _formatHtml(data){
@@ -31,7 +46,6 @@ export default class FormPrint extends Component {
 
                         <div style="text-align:center">
                             <img style="width:100px; height:100px;" src="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${ data.code }&chld=H|0" />
-
                             <p>
                               ${data.code}
                             </p>
@@ -46,7 +60,7 @@ export default class FormPrint extends Component {
                         <p> Loại vé : ${types[data.type]}  - ${ data.number_offer > 1 ? 'Vé đoàn' : 'Vé đơn' } </p>
 
 
-                        <p> Ngày IN : 16-12-2019 </p>
+                        <p> Ngày IN : ${ moment(moment(new Date())).format('DD-MM-YYYY') } </p>
 
                         <p>
                           Quý khách vui lòng giữ vé QRCODE để scan vào cổng, lưu ý chỉ sử dụng được 1 lần duy nhất
@@ -71,9 +85,23 @@ export default class FormPrint extends Component {
 
         return HTML ;
     }
+
+    componentWillReceiveProps(newProps){
+
+      if(newProps.isOpen){
+        const HTML = this._formatHtml(newProps.data);
+
+        setTimeout(()=>{
+          doPrint(HTML) ;
+          this.props.onToggle(false)
+        },1000)
+
+      }
+    }
     render() {
 
         const HTML = this._formatHtml(this.props.data);
+
 
         return (
             <ViewModal {...this.props}>

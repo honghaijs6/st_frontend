@@ -101,9 +101,7 @@ class DefaultLayout extends Component {
                       : (null);
                   },
                 )}
-                {/*<Redirect from="/" to="/demoticket" />*/}
-                <Redirect from="/" to="/dashboard" />
-
+                <Redirect from="/" to="/demoticket" />
               </Switch>
 
             </Container>
