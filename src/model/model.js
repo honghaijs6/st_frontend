@@ -187,7 +187,7 @@ class Model {
 
     const url = server.base()+ '/' + this.model;
 
-    preLoad('post');
+    //preLoad('post');
     axios.post(url,data,this.db.config)
           .then((res)=>{
 

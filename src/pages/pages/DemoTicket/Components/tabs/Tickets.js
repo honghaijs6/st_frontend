@@ -20,6 +20,8 @@ import BenMessage from '../../../../../components/BenMessage';
 import MyForm from './FormTicket';
 import FormPrint from './FormPrintTicket';
 
+import ButtonImportCode2Device from '../../../../../components/ButtonImportCode2Device' ;
+
 
 
 const MODE = 'coupons' ;
@@ -220,7 +222,7 @@ class Ticket extends React.Component {
         if(res.name==='success'){
 
 
-            
+
             this._addUserToDevice(res.data) ;
 
             this.setState({
@@ -324,6 +326,12 @@ class Ticket extends React.Component {
 
     this._deleteUserToDevice(item.code) ;
   }
+
+  _onCompleteUpload(){
+
+    this.model.load() ;
+
+  }
   render() {
     return (
       <div className="ubuntu-app" style={{ border:0, marginLeft:-10, marginTop:-10}}>
@@ -366,6 +374,13 @@ class Ticket extends React.Component {
 
                 customButton={
                     <ButtonGroup style={{marginRight:10}}>
+
+                        <ButtonImportCode2Device
+                            title="Import File Excel "
+                            strModel={MODE}
+                            columns={ ['code','type','card_type','device_serial'] }
+                            onComplete={()=>{ this._onCompleteUpload() }}
+                        />
 
                         <Button
                             className="btn-normal"
